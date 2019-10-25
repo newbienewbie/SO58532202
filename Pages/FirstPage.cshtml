@@ -1,0 +1,39 @@
+@page
+@model MasigasigTrackingSystem.Pages.TestingPages.FirstPageModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>FirstPage</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            var tc = 0;
+            $("#AddButton").click(function () {
+                tc = tc + 1;
+                $("#totalContacts").val(tc)
+                $.ajax('?handler=DropdownList', {
+                    method: "GET",
+                    data: { tc: tc },
+                    success: function (d) { $(".addselection").append(d); }
+                });
+            });
+        });
+    </script>
+
+</head>
+<body>
+    <button id="AddButton" class="btn" type="button">+</button>
+    @*<select asp-for="Mode" asp-items="Model.DropdownListViewModel.Drivers" class="form-control">
+        <option value="">Select a driver</option>
+    </select>*@
+    <div class="addselection">
+        <partial name="/Pages/TestingPages/_SecondPage.cshtml" model="@Model.DropdownListViewModel" />
+    </div>
+</body>
+</html>

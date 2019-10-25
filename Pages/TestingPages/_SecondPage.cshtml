@@ -1,0 +1,8 @@
+@using MasigasigTrackingSystem.Models
+@model DropdownListViewModel
+
+<div>
+    <select class="form-control dropdown" name="[@Model.ID].DriverID" asp-items="@Model.Drivers">
+        <option> Select a driver </option>
+    </select>
+</div>
